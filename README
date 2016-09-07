@@ -8,4 +8,4 @@ The purpose of this script is to monitor the lnet routes and report when a confi
 
 It runs on clients of the router (either lustre server side or lustre client side)
 
-
+test
