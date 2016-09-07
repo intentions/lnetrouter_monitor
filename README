@@ -2,7 +2,7 @@ LNet router monitor script
 
 Written by: Kurt J. Strosahl (strosahl@jlab.org)
 
-Date: 07sep16
+Date: 07SEP16
 
 The purpose of this script is to monitor the lnet routes and report when a configured route is down.
 
