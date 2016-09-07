@@ -8,21 +8,30 @@
 
 # Variable declarations
 
-EMAIL="test@test.org"
+EMAIL="strosahl@jlab.org"
 LCTL="/usr/sbin/lctl"
 
-send_email ()                                                                                                  
-{                                                                                                              
-/usr/bin/mutt -s $1 $EMAIL<< EOF                                              
-"$2"                                                                                                           
-EOF                                                                                                            
+send_email ()
+{
+/usr/bin/mutt -s "$1" $EMAIL<< EOF
+$2
+EOF
 }
 
 ROUTEDATA=`$LCTL route_list`
 
 if [ ROUTEDATA == "" ]
 then
-	send_email "no routes configured on $HOSTNAME" ""
+	send_email "no routes configured on $HOSTNAME" "" 
+	exit 1
 fi
 
+DOWNDATA=`echo "$ROUTEDATA" | grep up`
+
+if [ DOWNDATA != "" ]
+then 
+	send_email "Down route found by $HOSTNAME" "$DOWNDATA" 
+fi
+
+exit 0
 
